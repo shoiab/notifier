@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -34,5 +35,12 @@ public class NotifierApplication {
 				.build().directModelSubstitute(LocalDate.class, String.class)
 				.genericModelSubstitutes(ResponseEntity.class);
 	}
+	
+	@Bean
+    public FreeMarkerConfigurationFactoryBean getFreeMarkerConfiguration() {
+        FreeMarkerConfigurationFactoryBean bean = new FreeMarkerConfigurationFactoryBean();
+        bean.setTemplateLoaderPath("/fmtemplates/");
+        return bean;
+    }
 
 }
