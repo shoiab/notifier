@@ -1,10 +1,10 @@
 <html>
  
     <body>
-        <div>Dear ${task.user}, </div></br>
+        <div>Dear ${task.username} , </div></br>
  
-        <div>This email is sent to notify regarding the task :  ${task.title}</div>
-        <div>This is your task description : ${task.description}</div>
+        <div>This email is sent to notify regarding the task :  ${task.title} </div>
+        <div>This is your task description : ${task.taskdescription} </div>
   
     </body>
 </html>
