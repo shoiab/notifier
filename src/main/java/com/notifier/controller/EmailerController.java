@@ -20,12 +20,10 @@ public class EmailerController {
 	MailService mailservice;
 	
 	@RequestMapping (value = "/sendEmail", method=RequestMethod.POST)
-	public @ResponseBody JSONObject sendEmail(@RequestBody String taskstr){
-		
+	public @ResponseBody JSONObject sendEmail(@RequestBody String task){
 		TaskModel taskmodel = new TaskModel();
-
 		Gson gson = new Gson(); 
-		taskmodel = gson.fromJson(taskstr, TaskModel.class);
+		taskmodel = gson.fromJson(task.toString(), TaskModel.class);
 		
 		mailservice.sendMail(taskmodel);
 		
