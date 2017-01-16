@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -22,6 +23,8 @@ import freemarker.template.Configuration;
 
 @Service
 public class MailServiceImpl implements MailService {
+	
+	private static final Logger logger = Logger.getLogger(MailServiceImpl.class.getName());
 
 	@Autowired
 	JavaMailSender mailSender;
@@ -44,7 +47,7 @@ public class MailServiceImpl implements MailService {
 					mailSender.send(preparator);
 					
 				} catch (MailException ex) {
-					System.err.println(ex.getMessage());
+					logger.error(ex.getMessage());
 				}
 			} else {
 				String[] emailarr = reciepientmodel.getRecipient().split(",");
@@ -55,7 +58,7 @@ public class MailServiceImpl implements MailService {
 					try {
 						mailSender.send(preparator);
 					} catch (MailException ex) {
-						System.err.println(ex.getMessage());
+						logger.error(ex.getMessage());
 					}
 				}
 			}
@@ -77,7 +80,7 @@ public class MailServiceImpl implements MailService {
 						true);
 				helper.setSubject("Task Notification");
 				helper.setFrom(taskmodel.getTaskCreator());
-				System.out.println("recipient :: " + recipientEmail);
+				logger.info("recipient :: " + recipientEmail);
 				helper.setTo(recipientEmail);
 
 				Map<String, Object> templatemodel = new HashMap<String, Object>();
@@ -93,9 +96,7 @@ public class MailServiceImpl implements MailService {
 
 				String text = geFreeMarkerTemplateContent(templatemodel);
 				// use the true flag to indicate you need a multipart message
-				helper.setText(text, true);
-
-				
+				helper.setText(text, true);				
 			}
 
 		};
@@ -110,7 +111,7 @@ public class MailServiceImpl implements MailService {
 					model));
 			return content.toString();
 		} catch (Exception e) {
-			System.out.println("Exception occured while processing fmtemplate:"
+			logger.error("Exception occured while processing fmtemplate:"
 					+ e.getMessage());
 		}
 		return "";
