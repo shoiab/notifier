@@ -45,8 +45,8 @@ public class NotifierApplication {
         // Using gmail.
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("rpgayatri@gmail.com");
-        mailSender.setPassword("dollypuggy");
+        mailSender.setUsername("agiletracker@yopmail.com");
+        //mailSender.setPassword("");
  
         Properties javaMailProperties = new Properties();
         javaMailProperties.put("mail.smtp.starttls.enable", "true");

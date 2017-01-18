@@ -17,7 +17,7 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import com.notifier.dataService.MailService;
 import com.notifier.model.TaskModel;
-import com.notifier.model.TaskRecipientModel;
+import com.notifier.model.TaskAssigneeModel;
 
 import freemarker.template.Configuration;
 
@@ -35,11 +35,11 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void sendMail(TaskModel taskmodel) {
 
-		List<TaskRecipientModel> recipientlist = taskmodel.getRecipientList();
-		for (TaskRecipientModel reciepientmodel : recipientlist) {
+		List<TaskAssigneeModel> recipientlist = taskmodel.getAssigneeList();
+		for (TaskAssigneeModel reciepientmodel : recipientlist) {
 
-			if (reciepientmodel.getRecipientType().equals("user")) {
-				String recipientEmail = reciepientmodel.getRecipient();
+			if (reciepientmodel.getAssigneeType().equals("user")) {
+				String recipientEmail = reciepientmodel.getAssignee();
 				MimeMessagePreparator preparator = getMessagePreparator(
 						taskmodel, reciepientmodel, recipientEmail);
 
@@ -50,7 +50,7 @@ public class MailServiceImpl implements MailService {
 					logger.error(ex.getMessage());
 				}
 			} else {
-				String[] emailarr = reciepientmodel.getRecipient().split(",");
+				String[] emailarr = reciepientmodel.getAssignee().split(",");
 				for (String email : emailarr) {
 					MimeMessagePreparator preparator = getMessagePreparator(
 							taskmodel, reciepientmodel, email);
@@ -68,7 +68,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	private MimeMessagePreparator getMessagePreparator(
-			final TaskModel taskmodel, TaskRecipientModel recipientmodel,
+			final TaskModel taskmodel, TaskAssigneeModel recipientmodel,
 			String recipientEmail) {
 
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
@@ -79,7 +79,7 @@ public class MailServiceImpl implements MailService {
 				MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,
 						true);
 				helper.setSubject("Task Notification");
-				helper.setFrom(taskmodel.getTaskCreator());
+				helper.setFrom(taskmodel.getTaskAssigner());
 				logger.info("recipient :: " + recipientEmail);
 				helper.setTo(recipientEmail);
 

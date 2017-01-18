@@ -7,44 +7,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class TaskModel {
 
-	private String taskid;
+	private String taskId;
 	private String taskTitle;
 	private String description;
 	private String taskCreationDate;
-	private String dateOfStart;
-	private String dateOfCompletion;
-	private String statusOfCompletion;
+	private String startDate;
+	private String endDate;
+	private String taskStatus;
 	private String priority;
-	private String taskCreator;
+	private String taskAssigner;
 	private String notificationTime;
-	private List<TaskRecipientModel> recipientList;
+	private List<TaskAssigneeModel> assigneeList;
 
-	public String getDateOfStart() {
-		return dateOfStart;
-	}
-
-	public void setDateOfStart(String dateOfStart) {
-		this.dateOfStart = dateOfStart;
-	}
-
-	public String getDateOfCompletion() {
-		return dateOfCompletion;
-	}
-
-	public void setDateOfCompletion(String dateOfCompletion) {
-		this.dateOfCompletion = dateOfCompletion;
-	}
-
-	@JsonIgnore
-	public String getStatusOfCompletion() {
-		return statusOfCompletion;
-	}
-
-	@JsonIgnore
-	public void setStatusOfCompletion(String statusOfCompletion) {
-		this.statusOfCompletion = statusOfCompletion;
-	}
-
+	
 	public String getPriority() {
 		return priority;
 	}
@@ -61,36 +36,18 @@ public class TaskModel {
 		this.notificationTime = notificationTime;
 	}
 
-	@JsonIgnore
-	public String getTaskCreator() {
-		return taskCreator;
-	}
-
-	@JsonIgnore
-	public void setTaskCreator(String taskCreator) {
-		this.taskCreator = taskCreator;
-	}
-
-	@JsonIgnore
-	public String getTaskid() {
-		return taskid;
-	}
-
-	public List<TaskRecipientModel> getRecipientList() {
-		return recipientList;
-	}
-
-	public void setRecipientList(List<TaskRecipientModel> recipientList) {
-		this.recipientList = recipientList;
-	}
-
-	@JsonIgnore
-	public void setTaskid(String taskid) {
-		this.taskid = taskid;
-	}
-
 	public String getTaskTitle() {
 		return taskTitle;
+	}
+
+	@JsonIgnore
+	public String getTaskId() {
+		return taskId;
+	}
+
+	@JsonIgnore
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
 	}
 
 	public void setTaskTitle(String taskTitle) {
@@ -114,5 +71,49 @@ public class TaskModel {
 	public void setTaskCreationDate(String taskCreationDate) {
 		this.taskCreationDate = taskCreationDate;
 	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	@JsonIgnore
+	public String getTaskStatus() {
+		return taskStatus;
+	}
+
+	@JsonIgnore
+	public void setTaskStatus(String taskStatus) {
+		this.taskStatus = taskStatus;
+	}
+
+	public List<TaskAssigneeModel> getAssigneeList() {
+		return assigneeList;
+	}
+
+	public void setAssigneeList(List<TaskAssigneeModel> assigneeList) {
+		this.assigneeList = assigneeList;
+	}
+
+	@JsonIgnore
+	public String getTaskAssigner() {
+		return taskAssigner;
+	}
+
+	@JsonIgnore
+	public void setTaskAssigner(String taskAssigner) {
+		this.taskAssigner = taskAssigner;
+	}	
 
 }
