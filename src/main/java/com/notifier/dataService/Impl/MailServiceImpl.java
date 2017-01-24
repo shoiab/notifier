@@ -91,6 +91,7 @@ public class MailServiceImpl implements MailService {
 				taskmap.put("taskdescription", taskmodel.getDescription());
 				taskmap.put("title", taskmodel.getTaskTitle());
 				taskmap.put("username", recipientEmail);
+				taskmap.put("taskAssigner", taskmodel.getTaskAssigner());
 
 				templatemodel.put("task", taskmap);
 

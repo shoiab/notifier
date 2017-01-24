@@ -4,6 +4,7 @@
         <div>Dear ${task.username} , </div></br>
  
         <div>This email is sent to notify regarding the task :  ${task.title} </div>
+        <div>This task has been assigned to you by ${task.taskAssigner}
         <div>This is your task description : ${task.taskdescription} </div>
   
     </body>
